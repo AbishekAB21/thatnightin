@@ -13,7 +13,9 @@ class MatchDetailsScreenComponent extends ConsumerWidget {
     return Scaffold(
       backgroundColor: color.background,
       appBar: AppBar(backgroundColor: color.background),
-      body: Center(child: Text('Details screen')),
+      body: Column(children: [
+        
+      ],),
     );
   }
 }
