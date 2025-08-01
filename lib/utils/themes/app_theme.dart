@@ -42,9 +42,9 @@ class AppDefaultColor extends Appcolor {
   AppDefaultColor()
     : super(
         primaryColor: Colors.black,
-        secondaryGradient1: Color.fromRGBO(70, 78, 184, 1),
-        secondaryGradient2: Color.fromRGBO(80, 90, 201, 1),
-        teritiaryColor: Color.fromRGBO(80, 90, 201, 1),
+        secondaryGradient1: Color.fromRGBO(108, 173, 223, 1),
+        secondaryGradient2: Color.fromRGBO(71, 162, 232, 1),
+        teritiaryColor: Color.fromRGBO(21, 134, 221, 1),
         textColor: Colors.white70,
         background: Colors.black,
         textfieldBackground: Colors.grey.shade900,
@@ -62,9 +62,9 @@ class AppDarkColor extends Appcolor {
   AppDarkColor()
     : super(
         primaryColor: Colors.black,
-        secondaryGradient1: Color.fromRGBO(70, 78, 184, 1),
-        secondaryGradient2: Color.fromRGBO(80, 90, 201, 1),
-        teritiaryColor: Color.fromRGBO(80, 90, 201, 1),
+        secondaryGradient1: Color.fromRGBO(108, 173, 223, 1),
+        secondaryGradient2: Color.fromRGBO(71, 162, 232, 1),
+        teritiaryColor: Color.fromRGBO(21, 134, 221, 1),
         textColor: Colors.white70,
         background: Colors.black,
         textfieldBackground: Colors.grey.shade900,
