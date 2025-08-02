@@ -77,7 +77,10 @@ class PostWidget extends ConsumerWidget {
             color: color.textfieldBackground,
 
             //TODO: Add a test image
-            image: DecorationImage(image: AssetImage(''), fit: BoxFit.cover),
+            image: DecorationImage(
+              image: AssetImage('assets/images/test_image.jpg'),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         SizedBox(height: 10.0),

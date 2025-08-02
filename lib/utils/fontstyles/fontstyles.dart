@@ -104,7 +104,16 @@ class Fontstyles {
     );
   }
 
-  static TextStyle roboto15Hintpx(BuildContext context, WidgetRef ref) {
+  static TextStyle roboto17Bold(BuildContext context, WidgetRef ref) {
+    final color = ref.watch(themeProvider);
+    return GoogleFonts.roboto(
+      fontSize: 17,
+      fontWeight: FontWeight.w700,
+      color: color.iconColor,
+    );
+  }
+
+  static TextStyle roboto12Hintpx(BuildContext context, WidgetRef ref) {
     final color = ref.watch(themeProvider);
     return GoogleFonts.roboto(
       fontSize: 12,
