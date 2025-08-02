@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
 import 'package:thatnightin/common/widgets/reusable_textfield.dart';
-import 'package:thatnightin/features/search_screen/widgets/search_result_widget.dart';
+import 'package:thatnightin/features/search/widgets/search_result_widget.dart';
 
 class SearchScreenComponent extends ConsumerWidget {
   const SearchScreenComponent({super.key});

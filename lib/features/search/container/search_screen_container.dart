@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:thatnightin/features/search_screen/component/search_screen_component.dart';
+import 'package:thatnightin/features/search/component/search_screen_component.dart';
 
 class SearchScreenContainer extends StatelessWidget {
   const SearchScreenContainer({super.key});
