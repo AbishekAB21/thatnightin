@@ -20,7 +20,7 @@ final GoRouter appRouter = GoRouter(
   routes: [
     // Splash screen route
     GoRoute(
-      path: '/',
+      path: '/match-detail-screen',
       pageBuilder:
           (context, state) =>
               fadeTransitionPage(child: const SplashScreenContainer()),

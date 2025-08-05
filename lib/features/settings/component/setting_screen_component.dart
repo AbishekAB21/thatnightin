@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:thatnightin/common/providers/theme_provider.dart';
 import 'package:thatnightin/features/settings/widgets/profile_section.dart';
 import 'package:thatnightin/features/settings/widgets/settings_screen_tile.dart';
-import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
 
 class SettingScreenComponent extends ConsumerWidget {
   const SettingScreenComponent({super.key});
