@@ -16,6 +16,7 @@ class LiquidGlassAuthContaner extends ConsumerWidget {
   final Widget bottomWidget;
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final void Function()? onAuthenticateUserPressed;
   const LiquidGlassAuthContaner({
     super.key,
     required this.headertext,
@@ -24,6 +25,7 @@ class LiquidGlassAuthContaner extends ConsumerWidget {
     required this.bottomWidget,
     required this.emailController,
     required this.passwordController,
+    required this.onAuthenticateUserPressed
   });
 
   @override
@@ -106,7 +108,7 @@ class LiquidGlassAuthContaner extends ConsumerWidget {
                     buttonTitle: 'Sign In',
                     customBorderRadius: 10,
                     customPaddingVertical: 13,
-                    onPressed: () {},
+                    onPressed: onAuthenticateUserPressed,
                   ),
 
                   SizedBox(height: 20),

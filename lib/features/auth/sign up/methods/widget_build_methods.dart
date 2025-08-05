@@ -37,7 +37,7 @@ class WidgetBuildMethods {
                 bottom: 20.0,
               ),
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 4,
+              height: MediaQuery.of(context).size.height / 3.8,
               decoration: BoxDecoration(
                 color: color.liquidGlassColor,
                 borderRadius: BorderRadius.circular(25.0),
@@ -67,6 +67,30 @@ class WidgetBuildMethods {
                         ref.read(ifNameEnteredProvider.notifier).state = true;
                       }
                     },
+                  ),
+                  SizedBox(height: 10.0),
+                  Align(
+                    alignment: Alignment.center,
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'Already have an account? ',
+                        style: Fontstyles.roboto16pxLight(context, ref),
+                        children: [
+                          TextSpan(
+                            text: 'Sign In',
+                            style: Fontstyles.roboto16pxSemiBoldBlue(
+                              context,
+                              ref,
+                            ),
+                            recognizer:
+                                TapGestureRecognizer()
+                                  ..onTap = () {
+                                    context.pop();
+                                  },
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -136,6 +160,9 @@ class WidgetBuildMethods {
           ),
         ],
       ),
+      onAuthenticateUserPressed: () {
+        context.pushReplacement('/home-screen');
+      },
     );
   }
 }

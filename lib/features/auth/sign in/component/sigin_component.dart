@@ -86,6 +86,9 @@ class SigInComponent extends ConsumerWidget {
                     ),
                   ),
                 ),
+                onAuthenticateUserPressed: (){
+                  context.pushReplacement('/home-screen');
+                },
               ),
             ],
           ),
