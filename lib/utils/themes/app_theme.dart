@@ -20,6 +20,8 @@ abstract class Appcolor {
   final Color teritiaryColor;
   final Color iconColor;
   final Color liquidGlassColor;
+  final Color defaultOverlayColor;
+  final Color plainWhite;
 
   Appcolor({
     required this.primaryColor,
@@ -37,6 +39,8 @@ abstract class Appcolor {
     required this.teritiaryColor,
     required this.iconColor,
     required this.liquidGlassColor,
+    required this.defaultOverlayColor,
+    required this.plainWhite,
   });
 }
 
@@ -57,7 +61,9 @@ class AppDefaultColor extends Appcolor {
         deleteColor: const Color.fromARGB(255, 152, 23, 14),
         warningColor: Colors.amber,
         iconColor: Colors.white,
-        liquidGlassColor: Colors.white.withValues(alpha: 0.3)
+        liquidGlassColor: Colors.white.withValues(alpha: 0.3),
+        defaultOverlayColor: Colors.black,
+        plainWhite: Colors.white
       );
 }
 
@@ -78,7 +84,9 @@ class AppDarkColor extends Appcolor {
         deleteColor: const Color.fromARGB(255, 152, 23, 14),
         warningColor: Colors.amber,
         iconColor: Colors.white,
-        liquidGlassColor: Colors.white.withValues(alpha: 0.3)
+        liquidGlassColor: Colors.white.withValues(alpha: 0.3),
+        defaultOverlayColor: Colors.black,
+         plainWhite: Colors.white
       );
 }
 
@@ -86,9 +94,9 @@ class AppLightColor extends Appcolor {
   AppLightColor()
     : super(
         primaryColor: Colors.white,
-        secondaryGradient1: Color.fromRGBO(100, 110, 255, 1),
-        secondaryGradient2: Color.fromRGBO(120, 130, 255, 1),
-        teritiaryColor: Color.fromRGBO(120, 130, 255, 1),
+        secondaryGradient1: Color.fromRGBO(108, 173, 223, 1),
+        secondaryGradient2: Color.fromRGBO(71, 162, 232, 1),
+        teritiaryColor: Color.fromRGBO(21, 134, 221, 1),
         textColor: Colors.black87,
         background: Colors.white,
         textfieldBackground: Colors.grey.shade300,
@@ -99,6 +107,8 @@ class AppLightColor extends Appcolor {
         deleteColor: const Color.fromARGB(255, 152, 23, 14),
         warningColor: Colors.amber,
         iconColor: Colors.black,
-        liquidGlassColor: Colors.white.withValues(alpha: 0.3)
+        liquidGlassColor: Colors.white.withValues(alpha: 0.3),
+        defaultOverlayColor: Colors.black,
+         plainWhite: Colors.white
       );
 }

@@ -22,7 +22,7 @@ class MyMatchWidget extends ConsumerWidget {
             padding: EdgeInsets.all(3),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: color.background,
+              color: color.defaultOverlayColor,
               image: DecorationImage(
                 image: AssetImage('assets/images/test_image.jpg'),
                 fit: BoxFit.cover,
@@ -35,7 +35,10 @@ class MyMatchWidget extends ConsumerWidget {
               children: [
                 Text(
                   matchName,
-                  style: Fontstyles.roboto10px(context, ref),
+                  style: Fontstyles.roboto10px(
+                    context,
+                    ref,
+                  ).copyWith(color: color.background),
                 ),
                 SizedBox(height: 5),
               ],

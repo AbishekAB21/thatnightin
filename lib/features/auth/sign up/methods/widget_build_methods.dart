@@ -107,7 +107,6 @@ class WidgetBuildMethods {
     TextEditingController emailController,
     TextEditingController passwordController,
   ) {
-    final color = ref.watch(themeProvider);
     return LiquidGlassAuthContaner(
       headertext: 'Sign Up',
       textfieldLabel1: 'Email',

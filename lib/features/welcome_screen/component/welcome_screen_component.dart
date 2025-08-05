@@ -13,7 +13,7 @@ class WelcomeScreenComponent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final color = ref.watch(themeProvider);
     return Scaffold(
-      backgroundColor: color.background,
+      backgroundColor: color.defaultOverlayColor,
 
       body: Container(
         padding: EdgeInsets.only(
@@ -38,7 +38,7 @@ class WelcomeScreenComponent extends ConsumerWidget {
             RichText(
               text: TextSpan(
                 text: 'Welcome to ',
-                style: Fontstyles.roboto30px(context, ref),
+                style: Fontstyles.roboto30px(context, ref, color.plainWhite),
                 children: [
                   TextSpan(
                     text: 'ThatNightIn',

@@ -21,7 +21,7 @@ class SigInComponent extends ConsumerWidget {
       child: GestureDetector(
         onTap: FocusScope.of(context).unfocus,
         child: Scaffold(
-          backgroundColor: color.background,
+          backgroundColor: color.defaultOverlayColor,
 
           body: Stack(
             children: [
@@ -31,7 +31,7 @@ class SigInComponent extends ConsumerWidget {
                 child: Icon(
                   Icons.sports_soccer_rounded,
                   size: 60,
-                  color: color.iconColor,
+                  color: color.plainWhite,
                 ),
               ),
 
