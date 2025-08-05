@@ -15,6 +15,19 @@ class Fontstyles {
     );
   }
 
+  static TextStyle roboto30px(
+    BuildContext context,
+    WidgetRef ref, [
+    Color? customColor,
+  ]) {
+    final color = ref.watch(themeProvider);
+    return GoogleFonts.roboto(
+      fontSize: 30,
+      fontWeight: FontWeight.w900,
+      color: customColor ?? color.iconColor,
+    );
+  }
+
   static TextStyle roboto25px(BuildContext context, WidgetRef ref) {
     final color = ref.watch(themeProvider);
     return GoogleFonts.roboto(
@@ -83,6 +96,15 @@ class Fontstyles {
       fontSize: 16,
       fontWeight: FontWeight.w600,
       color: isgrey ? color.textfieldBackground : color.iconColor,
+    );
+  }
+
+  static TextStyle roboto16pxSemiBoldBlue(BuildContext context, WidgetRef ref) {
+    final color = ref.watch(themeProvider);
+    return GoogleFonts.roboto(
+      fontSize: 16,
+      fontWeight: FontWeight.w900,
+      color: color.secondaryGradient2,
     );
   }
 

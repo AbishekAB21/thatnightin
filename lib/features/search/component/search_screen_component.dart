@@ -12,6 +12,7 @@ class SearchScreenComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextEditingController searchController = TextEditingController();
     final color = ref.watch(themeProvider);
     return GestureDetector(
       onTap: FocusScope.of(context).unfocus,
@@ -27,7 +28,7 @@ class SearchScreenComponent extends ConsumerWidget {
           padding: const EdgeInsets.all(12.0),
           child: Column(
             children: [
-              ReusableTextfield(hintText: 'Search for matches or users'),
+              ReusableTextfield(hintText: 'Search for matches or users',controller: searchController,),
               SizedBox(height: 20),
 
               // Search result widget

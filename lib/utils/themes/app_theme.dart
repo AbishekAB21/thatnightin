@@ -19,6 +19,7 @@ abstract class Appcolor {
   final Color warningColor;
   final Color teritiaryColor;
   final Color iconColor;
+  final Color liquidGlassColor;
 
   Appcolor({
     required this.primaryColor,
@@ -35,6 +36,7 @@ abstract class Appcolor {
     required this.warningColor,
     required this.teritiaryColor,
     required this.iconColor,
+    required this.liquidGlassColor,
   });
 }
 
@@ -55,6 +57,7 @@ class AppDefaultColor extends Appcolor {
         deleteColor: const Color.fromARGB(255, 152, 23, 14),
         warningColor: Colors.amber,
         iconColor: Colors.white,
+        liquidGlassColor: Colors.white.withValues(alpha: 0.3)
       );
 }
 
@@ -75,6 +78,7 @@ class AppDarkColor extends Appcolor {
         deleteColor: const Color.fromARGB(255, 152, 23, 14),
         warningColor: Colors.amber,
         iconColor: Colors.white,
+        liquidGlassColor: Colors.white.withValues(alpha: 0.3)
       );
 }
 
@@ -95,5 +99,6 @@ class AppLightColor extends Appcolor {
         deleteColor: const Color.fromARGB(255, 152, 23, 14),
         warningColor: Colors.amber,
         iconColor: Colors.black,
+        liquidGlassColor: Colors.white.withValues(alpha: 0.3)
       );
 }

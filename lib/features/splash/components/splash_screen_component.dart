@@ -31,7 +31,7 @@ class _SplashScreenComponentState extends ConsumerState<SplashScreenComponent> {
       //     ),
       //   );
       // });
-      context.pushReplacement('/home-screen');
+      context.pushReplacement('/welcome-screen');
     });
   }
 

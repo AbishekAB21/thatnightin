@@ -7,13 +7,24 @@ import 'package:thatnightin/common/providers/theme_provider.dart';
 
 class ReusableTextfield extends ConsumerWidget {
   final String hintText;
-  const ReusableTextfield({super.key, required this.hintText});
+  final IconData? prefixIcon;
+  final IconData? suffixIcon;
+  final TextEditingController controller;
+  const ReusableTextfield({
+    super.key,
+    required this.hintText,
+
+    this.prefixIcon,
+    this.suffixIcon,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final color = ref.watch(themeProvider);
     return TextFormField(
       //TODO: add controller
+      controller: controller,
       style: Fontstyles.roboto15px(context, ref),
       cursorColor: color.secondaryGradient2,
       decoration: InputDecoration(
@@ -32,11 +43,13 @@ class ReusableTextfield extends ConsumerWidget {
         hintStyle: Fontstyles.roboto12Hintpx(context, ref),
 
         prefixIcon: Icon(
-          Icons.search_rounded,
+          prefixIcon ?? Icons.search_rounded,
           color: color.iconColor,
           size: 25,
         ),
-        hintFadeDuration: Duration(milliseconds: 500)
+
+        suffixIcon: Icon(suffixIcon),
+        hintFadeDuration: Duration(milliseconds: 500),
       ),
     );
   }
