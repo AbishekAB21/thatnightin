@@ -32,30 +32,62 @@ class ScoreBoardSection extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 //Home team
-                Row(
-                  children: [
-                    CircleAvatar(radius: 20),
-                    SizedBox(width: 10.0),
-                    Text(
-                      'Home Team',
-                      style: Fontstyles.roboto17Bold(context, ref),
-                    ),
-                  ],
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      CircleAvatar(
+                        radius: 25,
+                        backgroundColor: color.transparent,
+                        child: Image.asset('assets/images/testCrest1.png'),
+                      ),
+                      SizedBox(width: 10.0),
+                      Flexible(
+                        child: Text(
+                          'Manchester City',
+                          style: Fontstyles.roboto13px(context, ref).copyWith(
+                            color: color.plainWhite,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
 
+                SizedBox(width: 10.5,),
+
                 // Score
-                Text('5-5', style: Fontstyles.roboto25px(context, ref)),
+                Text(
+                  '5-5',
+                  style: Fontstyles.roboto25px(
+                    context,
+                    ref,
+                  ).copyWith(color: color.plainWhite),
+                ),
 
                 // Away team
-                Row(
-                  children: [
-                    Text(
-                      'Away Team',
-                      style: Fontstyles.roboto17Bold(context, ref),
-                    ),
-                    SizedBox(width: 10.0),
-                    CircleAvatar(radius: 20),
-                  ],
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          'Real Madrid',
+                          style: Fontstyles.roboto13px(
+                            context,
+                            ref,
+                          ).copyWith(color: color.plainWhite),
+                        ),
+                      ),
+                      SizedBox(width: 10.0),
+                      CircleAvatar(
+                        radius: 25,
+                        backgroundColor: color.transparent,
+                        child: Image.asset('assets/images/testCrest2.png'),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

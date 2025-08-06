@@ -22,6 +22,7 @@ abstract class Appcolor {
   final Color liquidGlassColor;
   final Color defaultOverlayColor;
   final Color plainWhite;
+  final Color transparent;
 
   Appcolor({
     required this.primaryColor,
@@ -41,6 +42,7 @@ abstract class Appcolor {
     required this.liquidGlassColor,
     required this.defaultOverlayColor,
     required this.plainWhite,
+    required this.transparent,
   });
 }
 
@@ -63,7 +65,8 @@ class AppDefaultColor extends Appcolor {
         iconColor: Colors.white,
         liquidGlassColor: Colors.white.withValues(alpha: 0.3),
         defaultOverlayColor: Colors.black,
-        plainWhite: Colors.white
+        plainWhite: Colors.white,
+        transparent: Colors.transparent,
       );
 }
 
@@ -86,7 +89,8 @@ class AppDarkColor extends Appcolor {
         iconColor: Colors.white,
         liquidGlassColor: Colors.white.withValues(alpha: 0.3),
         defaultOverlayColor: Colors.black,
-         plainWhite: Colors.white
+        plainWhite: Colors.white,
+        transparent: Colors.transparent,
       );
 }
 
@@ -109,6 +113,7 @@ class AppLightColor extends Appcolor {
         iconColor: Colors.black,
         liquidGlassColor: Colors.white.withValues(alpha: 0.3),
         defaultOverlayColor: Colors.black,
-         plainWhite: Colors.white
+        plainWhite: Colors.white,
+        transparent: Colors.transparent,
       );
 }
