@@ -14,10 +14,21 @@ class MyMatchesComponent extends ConsumerWidget {
     final color = ref.watch(themeProvider);
     return Scaffold(
       backgroundColor: color.background,
-      appBar: AppBar(
-        toolbarHeight: 20,
-        backgroundColor: color.background,
-        title: Text('Watchlist', style: Fontstyles.roboto20px(context, ref)),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: AppBar(
+          backgroundColor: color.background,
+          flexibleSpace: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('Watchlist', style: Fontstyles.roboto20px(context, ref)),
+              ],
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

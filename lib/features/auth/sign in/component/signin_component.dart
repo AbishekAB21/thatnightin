@@ -25,27 +25,10 @@ class SigInComponent extends ConsumerWidget {
 
           body: Stack(
             children: [
-              // Logo
-              Align(
-                alignment: Alignment.topCenter,
-                child: Icon(
-                  Icons.sports_soccer_rounded,
-                  size: 60,
-                  color: color.plainWhite,
-                ),
-              ),
-
-              // Background
+              // Background image
               Container(
-                padding: EdgeInsets.only(
-                  top: 10.0,
-                  left: 20.0,
-                  right: 20.0,
-                  bottom: 70.0,
-                ),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-
+                width: double.infinity,
+                height: double.infinity,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/images/welcomeScreenCover.jpg'),
@@ -55,7 +38,16 @@ class SigInComponent extends ConsumerWidget {
                 ),
               ),
 
-              // Liquid glass container
+              // Content (logo)
+              Align(
+                alignment: Alignment.topCenter,
+                child: Icon(
+                  Icons.sports_soccer_rounded,
+                  size: 60,
+                  color: color.plainWhite,
+                ),
+              ),
+
               LiquidGlassAuthContaner(
                 headertext: 'Sign In',
                 textfieldLabel1: 'Email',
@@ -86,7 +78,7 @@ class SigInComponent extends ConsumerWidget {
                     ),
                   ),
                 ),
-                onAuthenticateUserPressed: (){
+                onAuthenticateUserPressed: () {
                   context.pushReplacement('/home-screen');
                 },
               ),

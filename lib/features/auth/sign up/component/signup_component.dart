@@ -26,16 +26,6 @@ class SignUpComponent extends ConsumerWidget {
 
           body: Stack(
             children: [
-              // Logo
-              Align(
-                alignment: Alignment.topCenter,
-                child: Icon(
-                  Icons.sports_soccer_rounded,
-                  size: 60,
-                  color: color.plainWhite,
-                ),
-              ),
-
               // Background
               Container(
                 padding: EdgeInsets.only(
@@ -53,6 +43,16 @@ class SignUpComponent extends ConsumerWidget {
                     fit: BoxFit.cover,
                     opacity: 0.65,
                   ),
+                ),
+              ),
+
+              // Logo
+              Align(
+                alignment: Alignment.topCenter,
+                child: Icon(
+                  Icons.sports_soccer_rounded,
+                  size: 60,
+                  color: color.plainWhite,
                 ),
               ),
 

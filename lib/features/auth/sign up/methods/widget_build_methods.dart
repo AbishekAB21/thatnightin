@@ -37,14 +37,13 @@ class WidgetBuildMethods {
                 bottom: 20.0,
               ),
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 3.8,
               decoration: BoxDecoration(
                 color: color.liquidGlassColor,
                 borderRadius: BorderRadius.circular(25.0),
                 border: Border.all(color: color.liquidGlassColor),
               ),
               child: Column(
-                // mainAxisSize: MainAxisSize.min,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     'What\'s your name?',

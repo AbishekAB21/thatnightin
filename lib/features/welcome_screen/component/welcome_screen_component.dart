@@ -35,21 +35,9 @@ class WelcomeScreenComponent extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            RichText(
-              text: TextSpan(
-                text: 'Welcome to ',
-                style: Fontstyles.roboto30px(context, ref, color.plainWhite),
-                children: [
-                  TextSpan(
-                    text: 'ThatNightIn',
-                    style: Fontstyles.roboto30px(
-                      context,
-                      ref,
-                      color.secondaryGradient2,
-                    ),
-                  ),
-                ],
-              ),
+            Text(
+              'ThatNightIn',
+              style: Fontstyles.roboto35px(context, ref, true),
             ),
             Text(
               'Strictly footy!',

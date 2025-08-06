@@ -13,9 +13,9 @@ class SearchResultWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final color = ref.watch(themeProvider);
     return GestureDetector(
-      
       onTap: () => context.push('/match-detail-screen'),
       child: Container(
+        width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.all(15.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
@@ -28,21 +28,28 @@ class SearchResultWidget extends ConsumerWidget {
               backgroundColor: color.secondaryGradient2.withValues(alpha: 0.8),
             ),
             SizedBox(width: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Manchester City vs Inter Milan',
-                  style: Fontstyles.roboto18px(context, ref),
-                ),
-                SizedBox(height: 10.0),
-                Text(
-                  'UEFA Champions League',
-                  style: Fontstyles.roboto13px(context, ref),
-                ),
-                SizedBox(height: 5.0),
-                Text('11 July 2023', style: Fontstyles.roboto13px(context, ref)),
-              ],
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Manchester City vs Inter Milan',
+                    style: Fontstyles.roboto18px(context, ref),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                  SizedBox(height: 10.0),
+                  Text(
+                    'UEFA Champions League',
+                    style: Fontstyles.roboto13px(context, ref),
+                  ),
+                  SizedBox(height: 5.0),
+                  Text(
+                    '11 July 2023',
+                    style: Fontstyles.roboto13px(context, ref),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

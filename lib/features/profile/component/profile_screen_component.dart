@@ -101,8 +101,8 @@ class ProfileScreenComponent extends ConsumerWidget {
                 itemCount: 6,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 2,
-                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 8,
                 ),
                 itemBuilder: (context, index) => MyMatchWidget(matchName: ''),
               ),

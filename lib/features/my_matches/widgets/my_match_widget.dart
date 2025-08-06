@@ -12,40 +12,35 @@ class MyMatchWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final color = ref.watch(themeProvider);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Flexible(
-          child: Container(
-            height: 250,
-            width: 180,
-            padding: EdgeInsets.all(3),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: color.defaultOverlayColor,
-              image: DecorationImage(
-                image: AssetImage('assets/images/test_image.jpg'),
-                fit: BoxFit.cover,
-                opacity: 0.7,
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  matchName,
-                  style: Fontstyles.roboto10px(
-                    context,
-                    ref,
-                  ).copyWith(color: color.background),
-                ),
-                SizedBox(height: 5),
-              ],
-            ),
-          ),
+    final screenWidth = MediaQuery.of(context).size.width;
+    final containerWidth = (screenWidth / 2) - 15;
+
+    return Container(
+      width: containerWidth,
+      height: containerWidth * 1.4,
+      padding: EdgeInsets.all(3),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: color.defaultOverlayColor,
+        image: DecorationImage(
+          image: AssetImage('assets/images/test_image.jpg'),
+          fit: BoxFit.cover,
+          opacity: 0.7,
         ),
-      ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text(
+            matchName,
+            style: Fontstyles.roboto10px(
+              context,
+              ref,
+            ).copyWith(color: color.background),
+          ),
+          SizedBox(height: 5),
+        ],
+      ),
     );
   }
 }

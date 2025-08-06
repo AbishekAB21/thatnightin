@@ -17,7 +17,7 @@ class SettingScreenComponent extends ConsumerWidget {
       backgroundColor: color.background,
 
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(150),
+        preferredSize: Size.fromHeight(170),
         child: AppBar(
           backgroundColor: color.secondaryGradient2,
           shape: RoundedRectangleBorder(

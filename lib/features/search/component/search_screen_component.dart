@@ -18,11 +18,22 @@ class SearchScreenComponent extends ConsumerWidget {
       onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
         backgroundColor: color.background,
-        appBar: AppBar(
+        appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: AppBar(
           backgroundColor: color.background,
-          toolbarHeight: 20,
-          title: Text('Search', style: Fontstyles.roboto20px(context, ref)),
+          flexibleSpace: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('Search', style: Fontstyles.roboto20px(context, ref)),
+              ],
+            ),
+          ),
         ),
+      ),
 
         body: Padding(
           padding: const EdgeInsets.all(12.0),

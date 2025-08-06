@@ -25,7 +25,7 @@ class LiquidGlassAuthContaner extends ConsumerWidget {
     required this.bottomWidget,
     required this.emailController,
     required this.passwordController,
-    required this.onAuthenticateUserPressed
+    required this.onAuthenticateUserPressed,
   });
 
   @override
@@ -36,7 +36,10 @@ class LiquidGlassAuthContaner extends ConsumerWidget {
       child: Padding(
         padding: EdgeInsets.all(0.0),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(25.0),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25.0),
+            topRight: Radius.circular(25.0),
+          ),
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
             child: Container(
@@ -50,70 +53,79 @@ class LiquidGlassAuthContaner extends ConsumerWidget {
               //height: MediaQuery.of(context).size.height / 1.9,
               decoration: BoxDecoration(
                 color: color.liquidGlassColor,
-                borderRadius: BorderRadius.circular(25.0),
-                border: Border.all(color: color.liquidGlassColor),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25.0),
+                  topRight: Radius.circular(25.0),
+                ),
+                border: Border(
+                  left: BorderSide(color: color.liquidGlassColor),
+                  right: BorderSide(color: color.liquidGlassColor),
+                  top: BorderSide(color: color.liquidGlassColor),
+                ),
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      headertext,
-                      style: Fontstyles.roboto35px(context, ref),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        headertext,
+                        style: Fontstyles.roboto35px(context, ref),
+                      ),
                     ),
-                  ),
-
-                  SizedBox(height: 20),
-
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      textfieldLabel1,
-                      style: Fontstyles.roboto17Bold(context, ref),
+                
+                    SizedBox(height: 20),
+                
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        textfieldLabel1,
+                        style: Fontstyles.roboto17Bold(context, ref),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 5.0),
-
-                  ReusableTextfield(
-                    controller: emailController,
-                    hintText: textfieldLabel1,
-                    prefixIcon: Icons.email_rounded,
-                  ),
-                  SizedBox(height: 10),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      textfieldLabel2,
-                      style: Fontstyles.roboto17Bold(context, ref),
+                    SizedBox(height: 5.0),
+                
+                    ReusableTextfield(
+                      controller: emailController,
+                      hintText: textfieldLabel1,
+                      prefixIcon: Icons.email_rounded,
                     ),
-                  ),
-                  SizedBox(height: 5.0),
-                  ReusableTextfield(
-                    controller: passwordController,
-                    hintText: textfieldLabel2,
-                    prefixIcon: Icons.lock_rounded,
-                    suffixIcon: Icons.remove_red_eye_outlined,
-                  ),
-                  SizedBox(height: 5.0),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      'Forgot password?',
-                      style: Fontstyles.roboto16pxSemiBold(context, ref),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        textfieldLabel2,
+                        style: Fontstyles.roboto17Bold(context, ref),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 30),
-                  ReusableButton(
-                    buttonTitle: 'Sign In',
-                    customBorderRadius: 10,
-                    customPaddingVertical: 13,
-                    onPressed: onAuthenticateUserPressed,
-                  ),
-
-                  SizedBox(height: 20),
-                  bottomWidget
-                ],
+                    SizedBox(height: 5.0),
+                    ReusableTextfield(
+                      controller: passwordController,
+                      hintText: textfieldLabel2,
+                      prefixIcon: Icons.lock_rounded,
+                      suffixIcon: Icons.remove_red_eye_outlined,
+                    ),
+                    SizedBox(height: 5.0),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        'Forgot password?',
+                        style: Fontstyles.roboto16pxSemiBold(context, ref),
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    ReusableButton(
+                      buttonTitle: 'Sign In',
+                      customBorderRadius: 10,
+                      customPaddingVertical: 13,
+                      onPressed: onAuthenticateUserPressed,
+                    ),
+                
+                    SizedBox(height: 20),
+                    bottomWidget,
+                  ],
+                ),
               ),
             ),
           ),

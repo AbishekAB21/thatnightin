@@ -12,43 +12,46 @@ class ProfileSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final color = ref.watch(themeProvider);
-    return Stack(
-      children: [
-        Positioned(
-          left: 10,
-          top: 50,
-          child: IconButton(
-            onPressed: () {
-              context.pop();
-            },
-            icon: Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: color.plainWhite,
+
+    return Container(
+      padding: const EdgeInsets.only(bottom: 12.0),
+      child: Column(
+        children: [
+          SafeArea(
+            bottom: false,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                  onPressed: () {
+                    context.pop();
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    color: color.plainWhite,
+                  ),
+                ),
+              ),
             ),
           ),
-        ),
-
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 12.0,
-              horizontal: 8.0,
-            ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 CircleAvatar(backgroundColor: color.plainWhite, radius: 40),
-                SizedBox(width: 10.0),
+                const SizedBox(width: 10.0),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
                       'Abishek Aravind',
-                      style: Fontstyles.roboto22px(context, ref,),
+                      style: Fontstyles.roboto22px(context, ref),
                     ),
-                    SizedBox(height: 2.0),
+                    const SizedBox(height: 2.0),
                     Text(
                       'abishekabofficial@gmail.com',
                       style: Fontstyles.roboto16pxLight(context, ref),
@@ -58,8 +61,9 @@ class ProfileSection extends ConsumerWidget {
               ],
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
+

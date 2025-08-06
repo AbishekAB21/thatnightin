@@ -6,12 +6,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
 
 class Fontstyles {
-  static TextStyle roboto35px(BuildContext context, WidgetRef ref) {
+  static TextStyle roboto35px(BuildContext context, WidgetRef ref, [bool isblue = false]) {
     final color = ref.watch(themeProvider);
     return GoogleFonts.roboto(
       fontSize: 35,
       fontWeight: FontWeight.w900,
-      color: color.iconColor,
+      color: isblue ? color.secondaryGradient2 : color.iconColor,
     );
   }
 
