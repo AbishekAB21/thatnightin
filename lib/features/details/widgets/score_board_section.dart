@@ -59,7 +59,7 @@ class ScoreBoardSection extends ConsumerWidget {
 
                 // Score
                 Text(
-                  '5-5',
+                  '5-0',
                   style: Fontstyles.roboto25px(
                     context,
                     ref,

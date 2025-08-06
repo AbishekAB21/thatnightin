@@ -31,7 +31,7 @@ class MatchDetailsScreenComponent extends ConsumerWidget {
               ),
             ),
             automaticallyImplyLeading: false,
-
+      
             flexibleSpace: Stack(
               children: [
                 Container(
@@ -63,47 +63,50 @@ class MatchDetailsScreenComponent extends ConsumerWidget {
                     ),
                   ),
                 ),
-
+      
                 ScoreBoardSection(),
               ],
             ),
           ),
         ),
-        body: Column(
-          children: [
-            TabBar(
-              labelColor: color.secondaryGradient2,
-              dividerColor: color.textfieldBackground.withValues(alpha: 0.65),
-              indicatorColor: color.secondaryGradient2,
-              labelStyle: Fontstyles.roboto16pxSemiBold(context, ref),
-              indicatorSize: TabBarIndicatorSize.tab,
-              indicatorWeight: 2.0,
-              tabAlignment: TabAlignment.fill,
-              overlayColor: WidgetStatePropertyAll(color.textfieldBackground2),
-              unselectedLabelColor: color.iconColor,
-
-              tabs: [
-                Tab(text: 'Stats'),
-                Tab(text: 'Squads'),
-                Tab(text: 'Highlights'),
-              ],
-            ),
-
-            Expanded(
-              child: TabBarView(
-                children: [
-                  // Stats
-                  StatsTabContainer(),
-
-                  // Squads
-                  SquadsTabContainer(),
-
-                  // Highlights
-                  HighlightsTabContainer(),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
+          child: Column(
+            children: [
+              TabBar(
+                labelColor: color.secondaryGradient2,
+                dividerColor: color.textfieldBackground.withValues(alpha: 0.65),
+                indicatorColor: color.secondaryGradient2,
+                labelStyle: Fontstyles.roboto16pxSemiBold(context, ref),
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicatorWeight: 2.0,
+                tabAlignment: TabAlignment.fill,
+                overlayColor: WidgetStatePropertyAll(color.textfieldBackground2),
+                unselectedLabelColor: color.iconColor,
+                
+                tabs: [
+                  Tab(text: 'Stats'),
+                  Tab(text: 'Squads'),
+                  Tab(text: 'Highlights'),
                 ],
               ),
-            ),
-          ],
+                
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    // Stats
+                    StatsTabContainer(),
+                
+                    // Squads
+                    SquadsTabContainer(),
+                
+                    // Highlights
+                    HighlightsTabContainer(),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
