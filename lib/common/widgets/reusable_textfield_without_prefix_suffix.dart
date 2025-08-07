@@ -5,17 +5,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
 
-class ReusableTextfield extends ConsumerWidget {
+class ReusableTextfieldWithoutPrefixSuffix extends ConsumerWidget {
   final String hintText;
-  final IconData? prefixIcon;
-  final IconData? suffixIcon;
   final int? maxlines;
   final TextEditingController controller;
-  const ReusableTextfield({
+  const ReusableTextfieldWithoutPrefixSuffix({
     super.key,
     required this.hintText,
-    this.prefixIcon,
-    this.suffixIcon,
     this.maxlines,
     required this.controller,
   });
@@ -43,14 +39,6 @@ class ReusableTextfield extends ConsumerWidget {
         filled: true,
         hintText: hintText,
         hintStyle: Fontstyles.roboto12Hintpx(context, ref),
-
-        prefixIcon: Icon(
-          prefixIcon ?? Icons.search_rounded,
-          color: color.iconColor,
-          size: 25,
-        ),
-
-        suffixIcon: Icon(suffixIcon),
         hintFadeDuration: Duration(milliseconds: 500),
       ),
     );
