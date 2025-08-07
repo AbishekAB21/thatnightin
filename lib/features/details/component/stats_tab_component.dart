@@ -14,15 +14,18 @@ class StatsTabComponent extends ConsumerWidget {
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.only(
+          top: 10.0,
+          right: 10.0,
+          left: 10.0,
+          bottom: 14.5,
+        ),
         child: Column(
           children: [
-            /// TODO : Write a method to calculate home team percentage and pass it to "homeTeamStat:"
-
             // Possession
             ProgressBarWidget(
-              homeTeamStat:
-                  0.75, // Pass the home team's stat here as its left allinged
+              id: 'Possession',
+
               leftProgress: "75",
               rightProgress: "25",
               statTitle: "Possession",
@@ -33,8 +36,8 @@ class StatsTabComponent extends ConsumerWidget {
 
             // Shots
             ProgressBarWidget(
-              homeTeamStat:
-                  0.63, // Pass the home team's stat here as its left allinged
+              id: 'Shots',
+
               leftProgress: "25",
               rightProgress: "15",
               statTitle: "Shots",
@@ -45,8 +48,8 @@ class StatsTabComponent extends ConsumerWidget {
 
             // Shots on target
             ProgressBarWidget(
-              homeTeamStat:
-                  0.80, // Pass the home team's stat here as its left allinged
+              id: 'Shots on target',
+
               leftProgress: "8",
               rightProgress: "2",
               statTitle: "Shots on target",
@@ -57,10 +60,10 @@ class StatsTabComponent extends ConsumerWidget {
 
             // Passes Accuracy
             ProgressBarWidget(
-              homeTeamStat:
-                  0.60, // Pass the home team's stat here as its left allinged
-              leftProgress: "60",
-              rightProgress: "40",
+              id: 'Pass Accuracy',
+
+              leftProgress: "40",
+              rightProgress: "60",
               statTitle: "Pass Accuracy",
               ispercent: true,
             ),
@@ -69,8 +72,8 @@ class StatsTabComponent extends ConsumerWidget {
 
             // Offsides
             ProgressBarWidget(
-              homeTeamStat:
-                  0.10, // Pass the home team's stat here as its left allinged as percent
+              id: 'Offsides',
+
               leftProgress: "1",
               rightProgress: "9",
               statTitle: "Offsides",
@@ -81,8 +84,8 @@ class StatsTabComponent extends ConsumerWidget {
 
             // Red cards
             ProgressBarWidget(
-              homeTeamStat:
-                  0.00, // Pass the home team's stat here as its left allinged
+              id: 'Red Cards',
+
               leftProgress: "0",
               rightProgress: "0",
               statTitle: "Red cards",
@@ -93,8 +96,8 @@ class StatsTabComponent extends ConsumerWidget {
 
             // Yellow cards
             ProgressBarWidget(
-              homeTeamStat:
-                  0.30, // Pass the home team's stat here as its left allinged
+              id: 'Yellow Cards',
+
               leftProgress: "3",
               rightProgress: "7",
               statTitle: "Yellow cards",
@@ -105,8 +108,8 @@ class StatsTabComponent extends ConsumerWidget {
 
             // Corners
             ProgressBarWidget(
-              homeTeamStat:
-                  0.82, // Pass the home team's stat here as its left allinged
+              id: 'Corners',
+
               leftProgress: "9",
               rightProgress: "3",
               statTitle: "Corners",

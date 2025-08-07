@@ -16,7 +16,7 @@ class WelcomeScreenComponent extends ConsumerWidget {
       bottom: false,
       child: Scaffold(
         backgroundColor: color.defaultOverlayColor,
-      
+
         body: Container(
           padding: EdgeInsets.only(
             top: 10.0,
@@ -26,7 +26,7 @@ class WelcomeScreenComponent extends ConsumerWidget {
           ),
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-      
+
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/welcomeScreenCover.jpg'),
@@ -43,11 +43,14 @@ class WelcomeScreenComponent extends ConsumerWidget {
               ),
               Text(
                 'Strictly footy!',
-                style: Fontstyles.roboto17Bold(context, ref),
+                style: Fontstyles.roboto17Bold(
+                  context,
+                  ref,
+                ).copyWith(color: color.plainWhite),
               ),
-      
+
               SizedBox(height: 10),
-      
+
               Material(
                 elevation: 6,
                 borderRadius: BorderRadius.circular(40),
@@ -73,7 +76,7 @@ class WelcomeScreenComponent extends ConsumerWidget {
                     },
                     icon: Icon(
                       Icons.arrow_forward_ios_rounded,
-                      color: color.iconColor,
+                      color: color.plainWhite,
                     ),
                   ),
                 ),

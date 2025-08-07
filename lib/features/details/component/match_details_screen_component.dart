@@ -87,7 +87,7 @@ class MatchDetailsScreenComponent extends ConsumerWidget {
                 tabs: [
                   Tab(text: 'Stats'),
                   Tab(text: 'Squads'),
-                  Tab(text: 'Highlights'),
+                  Tab(text: 'Discussion'),
                 ],
               ),
                 
@@ -101,7 +101,7 @@ class MatchDetailsScreenComponent extends ConsumerWidget {
                     SquadsTabContainer(),
                 
                     // Highlights
-                    HighlightsTabContainer(),
+                    DiscussionContainer(),
                   ],
                 ),
               ),

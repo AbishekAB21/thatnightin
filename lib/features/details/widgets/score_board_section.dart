@@ -24,9 +24,21 @@ class ScoreBoardSection extends ConsumerWidget {
               size: 40,
             ),
             SizedBox(height: 10),
-            Text('11th July 2023', style: Fontstyles.roboto13px(context, ref)),
+            Text(
+              '11th July 2023',
+              style: Fontstyles.roboto13px(
+                context,
+                ref,
+              ).copyWith(color: color.plainWhite),
+            ),
 
-            Text('Sunday', style: Fontstyles.roboto13px(context, ref)),
+            Text(
+              'Sunday',
+              style: Fontstyles.roboto13px(
+                context,
+                ref,
+              ).copyWith(color: color.plainWhite),
+            ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,7 +67,7 @@ class ScoreBoardSection extends ConsumerWidget {
                   ),
                 ),
 
-                SizedBox(width: 10.5,),
+                SizedBox(width: 10.5),
 
                 // Score
                 Text(
