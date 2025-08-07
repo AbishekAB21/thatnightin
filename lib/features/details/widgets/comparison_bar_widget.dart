@@ -6,13 +6,13 @@ import 'package:thatnightin/common/providers/theme_provider.dart';
 import 'package:thatnightin/features/details/widgets/custom_comparison_bar.dart';
 import 'package:thatnightin/features/details/core/provider/comparison_bar_provider.dart';
 
-class ProgressBarWidget extends ConsumerWidget {
+class ComparisonBarWidget extends ConsumerWidget {
   final String id;
   final String statTitle;
   final String leftProgress;
   final String rightProgress;
   final bool ispercent;
-  const ProgressBarWidget({
+  const ComparisonBarWidget({
     super.key,
     required this.id,
     required this.leftProgress,

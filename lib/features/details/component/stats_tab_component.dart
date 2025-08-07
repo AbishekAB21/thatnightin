@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:thatnightin/common/providers/theme_provider.dart';
-import 'package:thatnightin/features/details/widgets/progress_bar_widget.dart';
+import 'package:thatnightin/features/details/widgets/comparison_bar_widget.dart';
 
 class StatsTabComponent extends ConsumerWidget {
   const StatsTabComponent({super.key});
@@ -23,7 +23,7 @@ class StatsTabComponent extends ConsumerWidget {
         child: Column(
           children: [
             // Possession
-            ProgressBarWidget(
+            ComparisonBarWidget(
               id: 'Possession',
 
               leftProgress: "75",
@@ -35,7 +35,7 @@ class StatsTabComponent extends ConsumerWidget {
             SizedBox(height: 10.0),
 
             // Shots
-            ProgressBarWidget(
+            ComparisonBarWidget(
               id: 'Shots',
 
               leftProgress: "25",
@@ -47,7 +47,7 @@ class StatsTabComponent extends ConsumerWidget {
             SizedBox(height: 10.0),
 
             // Shots on target
-            ProgressBarWidget(
+            ComparisonBarWidget(
               id: 'Shots on target',
 
               leftProgress: "8",
@@ -59,7 +59,7 @@ class StatsTabComponent extends ConsumerWidget {
             SizedBox(height: 10.0),
 
             // Passes Accuracy
-            ProgressBarWidget(
+            ComparisonBarWidget(
               id: 'Pass Accuracy',
 
               leftProgress: "40",
@@ -71,7 +71,7 @@ class StatsTabComponent extends ConsumerWidget {
             SizedBox(height: 10.0),
 
             // Offsides
-            ProgressBarWidget(
+            ComparisonBarWidget(
               id: 'Offsides',
 
               leftProgress: "1",
@@ -83,7 +83,7 @@ class StatsTabComponent extends ConsumerWidget {
             SizedBox(height: 10.0),
 
             // Red cards
-            ProgressBarWidget(
+            ComparisonBarWidget(
               id: 'Red Cards',
 
               leftProgress: "0",
@@ -95,7 +95,7 @@ class StatsTabComponent extends ConsumerWidget {
             SizedBox(height: 10.0),
 
             // Yellow cards
-            ProgressBarWidget(
+            ComparisonBarWidget(
               id: 'Yellow Cards',
 
               leftProgress: "3",
@@ -107,7 +107,7 @@ class StatsTabComponent extends ConsumerWidget {
             SizedBox(height: 10.0),
 
             // Corners
-            ProgressBarWidget(
+            ComparisonBarWidget(
               id: 'Corners',
 
               leftProgress: "9",
