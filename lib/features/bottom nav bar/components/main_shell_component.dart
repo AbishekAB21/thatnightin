@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:thatnightin/common/providers/theme_provider.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:thatnightin/features/bottom%20nav%20bar/widgets/new_post_sheet.dart';
 import 'package:thatnightin/features/bottom%20nav%20bar/core/providers/main_shell_provider.dart';
 
 class MainShellComponent extends ConsumerWidget {
@@ -13,6 +14,8 @@ class MainShellComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final TextEditingController searchController = TextEditingController();
+    final TextEditingController captionController = TextEditingController();
     final color = ref.watch(themeProvider);
     final currentIndex = ref.watch(tabIndexProvider);
     final tabs = [
@@ -28,7 +31,14 @@ class MainShellComponent extends ConsumerWidget {
         elevation: 6,
         shape: CircleBorder(),
         backgroundColor: color.secondaryGradient2,
-        onPressed: () {},
+        onPressed: () {
+          NewPostWidget().showPostBottomSheet(
+            context,
+            ref,
+            searchController,
+            captionController,
+          );
+        },
         child: Icon(Icons.add_rounded),
       ),
 
