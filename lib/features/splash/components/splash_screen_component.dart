@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:thatnightin/common/widgets/logo.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
+import 'package:thatnightin/features/splash/core/provider/splash_provider.dart';
 
 class SplashScreenComponent extends ConsumerStatefulWidget {
   const SplashScreenComponent({super.key});
@@ -20,18 +22,17 @@ class _SplashScreenComponentState extends ConsumerState<SplashScreenComponent> {
     super.initState();
 
     Future.delayed(const Duration(seconds: 3), () {
-      //final splashAuthCheck = ref.read(splashAuthProvider);
+      final splashAuthCheck = ref.read(splashAuthProvider);
 
-      // splashAuthCheck.whenData((isLoggedIn) {
-      //   Navigator.pushReplacement(
-      //     context,
-      //     CustomFadeTransition(
-      //       route:
-      //           isLoggedIn ? HomeScreenContainer() : WelcomeScreenContainer(),
-      //     ),
-      //   );
-      // });
-      context.pushReplacement('/welcome-screen');
+      splashAuthCheck.whenData((isLoggedIn) {
+        isLoggedIn
+            ? context.go('/home-screen')
+            : context.go('/welcome-screen');
+
+        print('USER: _______ ${FirebaseAuth.instance.currentUser}');
+      });
+
+      //context.pushReplacement('/welcome-screen');
     });
   }
 

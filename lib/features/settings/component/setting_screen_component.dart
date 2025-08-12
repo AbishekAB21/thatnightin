@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:thatnightin/common/providers/theme_provider.dart';
 import 'package:thatnightin/features/settings/widgets/profile_section.dart';
@@ -59,6 +61,20 @@ class SettingScreenComponent extends ConsumerWidget {
                 onChanged: (value) {
                   ref.watch(themeModeProvider.notifier).toggleTheme();
                 },
+              ),
+            ),
+
+            SizedBox(height: 30.0),
+
+            SettingsScreenTile(
+              leadingIcon: Icons.power_settings_new_rounded,
+              tileTitle: "Sign out",
+              suffixWidget: IconButton(
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  context.go('/welcome-screen');
+                },
+                icon: Icon(Icons.logout),
               ),
             ),
           ],

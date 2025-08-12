@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:thatnightin/features/details/widgets/comments_builder_widget.dart';
 
 import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
+import 'package:thatnightin/features/details/widgets/comments_builder_widget.dart';
 import 'package:thatnightin/common/widgets/reusable_textfield_without_prefix_suffix.dart';
 
 class DiscussionComponent extends ConsumerWidget {

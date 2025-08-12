@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:thatnightin/common/providers/visibility_provider.dart';
 
 import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
@@ -11,6 +12,7 @@ class ReusableTextfield extends ConsumerWidget {
   final IconData? suffixIcon;
   final int? maxlines;
   final TextEditingController controller;
+  final bool? isObscure;
   const ReusableTextfield({
     super.key,
     required this.hintText,
@@ -18,15 +20,18 @@ class ReusableTextfield extends ConsumerWidget {
     this.suffixIcon,
     this.maxlines,
     required this.controller,
+    this.isObscure = false,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isVisible = ref.watch(visibilityProvider);
     final color = ref.watch(themeProvider);
     return TextFormField(
       //TODO: add controller
       controller: controller,
       maxLines: maxlines ?? 1,
+      obscureText: isObscure! && !isVisible,
       style: Fontstyles.roboto15px(context, ref),
       cursorColor: color.secondaryGradient2,
       decoration: InputDecoration(
@@ -50,7 +55,15 @@ class ReusableTextfield extends ConsumerWidget {
           size: 25,
         ),
 
-        suffixIcon: Icon(suffixIcon),
+        suffixIcon: InkWell(
+          onTapUp:
+              (details) => ref.read(visibilityProvider.notifier).state = false,
+          onTapDown:
+              (details) => ref.read(visibilityProvider.notifier).state = true,
+          onTapCancel:
+              () => ref.read(visibilityProvider.notifier).state = false,
+          child: Icon(suffixIcon),
+        ),
         hintFadeDuration: Duration(milliseconds: 500),
       ),
     );

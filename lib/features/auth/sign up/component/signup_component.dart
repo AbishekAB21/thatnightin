@@ -6,16 +6,38 @@ import 'package:thatnightin/common/providers/theme_provider.dart';
 import 'package:thatnightin/features/auth/sign%20up/methods/widget_build_methods.dart';
 import 'package:thatnightin/features/auth/sign%20up/core/providers/signup_provider.dart';
 
-class SignUpComponent extends ConsumerWidget {
+class SignUpComponent extends ConsumerStatefulWidget {
   const SignUpComponent({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SignUpComponent> createState() => _SignUpComponentState();
+}
+
+class _SignUpComponentState extends ConsumerState<SignUpComponent> {
+  late TextEditingController nameController;
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final color = ref.watch(themeProvider);
     final isNameEntered = ref.watch(ifNameEnteredProvider);
-    final TextEditingController nameController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
 
     return SafeArea(
       bottom: false,
@@ -63,6 +85,7 @@ class SignUpComponent extends ConsumerWidget {
                   ? WidgetBuildMethods().buildSignUpForm(
                     context,
                     ref,
+                    nameController.text.trim(),
                     emailController,
                     passwordController,
                   )

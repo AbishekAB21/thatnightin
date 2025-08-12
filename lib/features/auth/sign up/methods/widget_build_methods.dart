@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:thatnightin/common/widgets/reusable_snackbar.dart';
 
 import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
 import 'package:thatnightin/common/widgets/reusable_button.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
 import 'package:thatnightin/common/widgets/reusable_textfield.dart';
+import 'package:thatnightin/features/auth/sign%20up/core/database/sign_up_db.dart';
 import 'package:thatnightin/features/auth/sign%20in/widgets/liquid_glass_container.dart';
 import 'package:thatnightin/features/auth/sign%20up/core/providers/signup_provider.dart';
 import 'package:thatnightin/features/auth/sign%20up/widgets/third_party_signup_button.dart';
@@ -84,6 +86,9 @@ class WidgetBuildMethods {
                             recognizer:
                                 TapGestureRecognizer()
                                   ..onTap = () {
+                                    ref
+                                        .read(ifNameEnteredProvider.notifier)
+                                        .state = false;
                                     context.pop();
                                   },
                           ),
@@ -103,9 +108,11 @@ class WidgetBuildMethods {
   Widget buildSignUpForm(
     BuildContext context,
     WidgetRef ref,
+    String username,
     TextEditingController emailController,
     TextEditingController passwordController,
   ) {
+    final color = ref.watch(themeProvider);
     return LiquidGlassAuthContaner(
       headertext: 'Sign Up',
       textfieldLabel1: 'Email',
@@ -158,8 +165,36 @@ class WidgetBuildMethods {
           ),
         ],
       ),
-      onAuthenticateUserPressed: () {
-        context.pushReplacement('/home-screen');
+      onAuthenticateUserPressed: () async {
+        try {
+          SignUpDb().createUserEmailPassword(
+            username,
+            emailController.text.trim(),
+            passwordController.text.trim(),
+            context,
+            ref,
+          );
+          context.pop();
+          ref.read(ifNameEnteredProvider.notifier).state = false;
+
+          if (context.mounted) {
+            ShowCustomSnackbar().showSnackbar(
+              context,
+              'Account Created - Please Sign in',
+              color.successColor,
+              ref,
+            );
+          }
+        } catch (e) {
+          if (context.mounted) {
+            ShowCustomSnackbar().showSnackbar(
+              context,
+              'Something went wrong: $e',
+              color.errorColor,
+              ref,
+            );
+          }
+        }
       },
     );
   }

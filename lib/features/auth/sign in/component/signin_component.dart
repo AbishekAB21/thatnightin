@@ -3,19 +3,41 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:thatnightin/common/widgets/reusable_snackbar.dart';
+import 'package:thatnightin/features/auth/sign%20in/core/database/sign_in_db.dart';
 
 import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
 import 'package:thatnightin/features/auth/sign%20in/widgets/liquid_glass_container.dart';
 
-class SigInComponent extends ConsumerWidget {
-  const SigInComponent({super.key});
+class SignInComponent extends ConsumerStatefulWidget {
+  const SignInComponent({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SignInComponent> createState() => _SignUpComponentState();
+}
+
+class _SignUpComponentState extends ConsumerState<SignInComponent> {
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final color = ref.watch(themeProvider);
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
     return SafeArea(
       bottom: false,
       child: GestureDetector(
@@ -78,8 +100,27 @@ class SigInComponent extends ConsumerWidget {
                     ),
                   ),
                 ),
-                onAuthenticateUserPressed: () {
-                  context.pushReplacement('/home-screen');
+                onAuthenticateUserPressed: () async {
+                  try {
+                    SignInDb().signInUserWithEmailAndPassword(
+                      emailController.text.trim(),
+                      passwordController.text.trim(),
+                    );
+                    ShowCustomSnackbar().showSnackbar(
+                      context,
+                      'Signed in!',
+                      color.successColor,
+                      ref,
+                    );
+                    context.go('/home-screen');
+                  } catch (e) {
+                    ShowCustomSnackbar().showSnackbar(
+                      context,
+                      'Something went wrong: $e',
+                      color.errorColor,
+                      ref,
+                    );
+                  }
                 },
               ),
             ],

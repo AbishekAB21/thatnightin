@@ -74,9 +74,9 @@ class LiquidGlassAuthContaner extends ConsumerWidget {
                         style: Fontstyles.roboto35px(context, ref),
                       ),
                     ),
-                
+
                     SizedBox(height: 20),
-                
+
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -85,7 +85,7 @@ class LiquidGlassAuthContaner extends ConsumerWidget {
                       ),
                     ),
                     SizedBox(height: 5.0),
-                
+
                     ReusableTextfield(
                       controller: emailController,
                       hintText: textfieldLabel1,
@@ -103,6 +103,7 @@ class LiquidGlassAuthContaner extends ConsumerWidget {
                     ReusableTextfield(
                       controller: passwordController,
                       hintText: textfieldLabel2,
+                      isObscure: true,
                       prefixIcon: Icons.lock_rounded,
                       suffixIcon: Icons.remove_red_eye_outlined,
                     ),
@@ -121,7 +122,7 @@ class LiquidGlassAuthContaner extends ConsumerWidget {
                       customPaddingVertical: 13,
                       onPressed: onAuthenticateUserPressed,
                     ),
-                
+
                     SizedBox(height: 20),
                     bottomWidget,
                   ],

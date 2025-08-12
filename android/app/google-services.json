@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "720845096985",
+    "project_id": "thatnightin-6dd8a",
+    "storage_bucket": "thatnightin-6dd8a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720845096985:android:b9a3cd57e1df93cc7c4288",
+        "android_client_info": {
+          "package_name": "com.abishek.thatnightin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiMkV87Cx0vWHwg4j5wGIgyDudwSQ5AXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
