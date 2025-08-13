@@ -14,11 +14,13 @@ class ShowCustomSnackbar {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message, style: Fontstyles.roboto15px(context, ref)),
-        backgroundColor: backgroundColor.withValues(alpha: 0.85),
+        backgroundColor: backgroundColor.withValues(alpha: 0.95),
         behavior: SnackBarBehavior.floating,
         duration: Duration(seconds: 3),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
   }
+
+
 }

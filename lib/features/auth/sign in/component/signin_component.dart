@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:thatnightin/common/widgets/top_snackbar.dart';
 import 'package:thatnightin/common/widgets/reusable_snackbar.dart';
-import 'package:thatnightin/features/auth/sign%20in/core/database/sign_in_db.dart';
 
 import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
+import 'package:thatnightin/features/auth/sign%20in/core/database/sign_in_db.dart';
 import 'package:thatnightin/features/auth/sign%20in/widgets/liquid_glass_container.dart';
 
 class SignInComponent extends ConsumerStatefulWidget {
@@ -101,24 +102,34 @@ class _SignUpComponentState extends ConsumerState<SignInComponent> {
                   ),
                 ),
                 onAuthenticateUserPressed: () async {
-                  try {
-                    SignInDb().signInUserWithEmailAndPassword(
-                      emailController.text.trim(),
-                      passwordController.text.trim(),
-                    );
-                    ShowCustomSnackbar().showSnackbar(
+                  if (emailController.text.isNotEmpty &&
+                      passwordController.text.isNotEmpty) {
+                    try {
+                      SignInDb().signInUserWithEmailAndPassword(
+                        emailController.text.trim(),
+                        passwordController.text.trim(),
+                      );
+                      ShowCustomSnackbar().showSnackbar(
+                        context,
+                        'Signed in!',
+                        color.successColor,
+                        ref,
+                      );
+                      context.go('/home-screen');
+                    } catch (e) {
+                      TopSnackbar().showTopSnackbar(
+                        'Something went wrong: $e',
+                        context,
+                        color.errorColor,
+                        Fontstyles.roboto15px(context, ref),
+                      );
+                    }
+                  } else {
+                    TopSnackbar().showTopSnackbar(
+                      'Please fill all the fields',
                       context,
-                      'Signed in!',
-                      color.successColor,
-                      ref,
-                    );
-                    context.go('/home-screen');
-                  } catch (e) {
-                    ShowCustomSnackbar().showSnackbar(
-                      context,
-                      'Something went wrong: $e',
                       color.errorColor,
-                      ref,
+                      Fontstyles.roboto15px(context, ref),
                     );
                   }
                 },
