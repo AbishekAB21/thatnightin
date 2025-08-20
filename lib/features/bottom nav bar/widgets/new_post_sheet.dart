@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:go_router/go_router.dart';
-import 'package:thatnightin/common/providers/theme_provider.dart';
-import 'package:thatnightin/common/widgets/reusable_textfield.dart';
-import 'package:thatnightin/common/widgets/reusable_textfield_without_prefix_suffix.dart';
-import 'package:thatnightin/features/search/widgets/search_result_widget.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
+import 'package:thatnightin/common/providers/theme_provider.dart';
+import 'package:thatnightin/features/bottom%20nav%20bar/widgets/input_section.dart';
 
 class NewPostWidget {
   void showPostBottomSheet(
@@ -30,7 +30,6 @@ class NewPostWidget {
             minChildSize: 0.4,
             builder: (context, scrollController) {
               return Container(
-                
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: color.textfieldBackground,
@@ -78,85 +77,9 @@ class NewPostWidget {
                         ],
                       ),
                       SizedBox(height: 30.0),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Pick the match',
-                                  style: Fontstyles.roboto17Bold(context, ref),
-                                ),
-                              ),
-                              SizedBox(height: 10.0),
-                              ReusableTextfield(
-                                hintText: 'Pick the match',
-                                controller: searchController,
-                              ),
-                              SizedBox(height: 10.0),
-                              SearchResultWidget(),
-                              SizedBox(height: 20.0),
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Add a caption',
-                                  style: Fontstyles.roboto17Bold(context, ref),
-                                ),
-                              ),
-                              SizedBox(height: 10.0),
-                              ReusableTextfieldWithoutPrefixSuffix(
-                                hintText: 'Add a caption',
-                                controller: captionController,
-                                maxlines: 3,
-                              ),
-                              SizedBox(height: 20.0),
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Add an image',
-                                  style: Fontstyles.roboto17Bold(context, ref),
-                                ),
-                              ),
-                              SizedBox(height: 10.0),
-                        
-                              // Adjust the bottom container to display the selected image once selected
-                              Container(
-                                height: 150,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  border: Border.all(
-                                    color: color.textfieldBackground2,
-                                  ),
-                                ),
-                                child: Center(
-                                  child: IconButton.outlined(
-                                    style: ButtonStyle(
-                                      shape: WidgetStatePropertyAll(
-                                        RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            10.0,
-                                          ),
-                                          side: BorderSide(
-                                            color: color.textfieldBackground,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                        
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.image_rounded,
-                                      color: color.secondaryGradient2,
-                                      size: 30,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                      InputSection(
+                        captionController: captionController,
+                        searchController: searchController,
                       ),
                     ],
                   ),

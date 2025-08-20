@@ -13,6 +13,7 @@ class ReusableTextfield extends ConsumerWidget {
   final int? maxlines;
   final TextEditingController controller;
   final bool? isObscure;
+  final void Function(String)? onChanged;
   const ReusableTextfield({
     super.key,
     required this.hintText,
@@ -21,6 +22,7 @@ class ReusableTextfield extends ConsumerWidget {
     this.maxlines,
     required this.controller,
     this.isObscure = false,
+    this.onChanged,
   });
 
   @override
@@ -66,6 +68,7 @@ class ReusableTextfield extends ConsumerWidget {
         ),
         hintFadeDuration: Duration(milliseconds: 500),
       ),
+      onChanged: onChanged,
     );
   }
 }

@@ -7,13 +7,21 @@ import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
 
 class SearchResultWidget extends ConsumerWidget {
-  const SearchResultWidget({super.key});
+  final String homeTeam;
+  final String awayTeam;
+  final String date;
+  const SearchResultWidget({
+    super.key,
+    required this.awayTeam,
+    required this.homeTeam,
+    required this.date,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final color = ref.watch(themeProvider);
     return GestureDetector(
-      onTap: () => context.push('/match-detail-screen'),
+      // TODO: onTap: () => context.push('/match-detail-screen'),
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.all(15.0),
@@ -33,7 +41,7 @@ class SearchResultWidget extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Manchester City vs Inter Milan',
+                    '$homeTeam vs $awayTeam',
                     style: Fontstyles.roboto18px(context, ref),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -44,10 +52,7 @@ class SearchResultWidget extends ConsumerWidget {
                     style: Fontstyles.roboto13px(context, ref),
                   ),
                   SizedBox(height: 5.0),
-                  Text(
-                    '11 July 2023',
-                    style: Fontstyles.roboto13px(context, ref),
-                  ),
+                  Text(date, style: Fontstyles.roboto13px(context, ref)),
                 ],
               ),
             ),

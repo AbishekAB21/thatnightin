@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
 import 'package:thatnightin/common/widgets/reusable_textfield.dart';
-import 'package:thatnightin/features/search/widgets/search_result_widget.dart';
+import 'package:thatnightin/features/bottom%20nav%20bar/widgets/search_result_widget.dart';
 
 class SearchScreenComponent extends ConsumerWidget {
   const SearchScreenComponent({super.key});
@@ -47,7 +47,7 @@ class SearchScreenComponent extends ConsumerWidget {
                 child: ListView.separated(
                   itemBuilder:
                       (context, index) =>
-                          SearchResultWidget(/* Pass data here */),
+                          null,
                   separatorBuilder: (context, index) => SizedBox(height: 10),
                   itemCount: 5,
                 ),
