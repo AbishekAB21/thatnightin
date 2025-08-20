@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
 
@@ -31,9 +29,25 @@ class SearchResultWidget extends ConsumerWidget {
         ),
         child: Row(
           children: [
-            CircleAvatar(
-              radius: 35,
-              backgroundColor: color.secondaryGradient2.withValues(alpha: 0.8),
+            Container(
+              padding: EdgeInsets.all(10.0),
+              height: 70,
+              width: 60,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular((10.0)),
+                gradient: LinearGradient(
+                  colors: [
+                    color.secondaryGradient1,
+                    color.secondaryGradient2,
+                    color.teritiaryColor,
+                  ],
+                ),
+              ),
+              child: Icon(
+                Icons.sports_soccer_rounded,
+                color: color.iconColor,
+                size: 30,
+              ),
             ),
             SizedBox(width: 20),
             Flexible(

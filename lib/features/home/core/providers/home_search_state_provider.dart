@@ -8,16 +8,21 @@ class HomeSearchNotifier extends StateNotifier<List<dynamic>> {
   final HomeService _service;
   Timer? _debounce;
 
+   List<dynamic> _allFixtures = [];
+   int _visibleCount = 10;
+
   HomeSearchNotifier(this._service) : super([]);
 
   final Map<String, List<dynamic>> _cache = {};
 
   void searchMatches(String query) {
     _debounce?.cancel();
-    
+
     _debounce = Timer(Duration(milliseconds: 800), () async {
       if (query.isEmpty) {
         state = [];
+        _allFixtures = [];
+        _visibleCount = 10;
         return;
       }
 
@@ -41,9 +46,12 @@ class HomeSearchNotifier extends StateNotifier<List<dynamic>> {
             teamId,
             season: season ?? 2023,
           );
-          state = fixtures;
+
+          _allFixtures = fixtures;
+          state = _allFixtures.take(_visibleCount).toList();
         } else {
           state = [];
+          _allFixtures = [];
         }
       } else if (parts.length == 2) {
         // Case: head-to-head
@@ -60,13 +68,27 @@ class HomeSearchNotifier extends StateNotifier<List<dynamic>> {
             season: season ?? 2023,
           );
 
-          state = fixtures;
+          _allFixtures = fixtures;
+
+          state = _allFixtures.take(_visibleCount).toList();
         } else {
           state = [];
+          _allFixtures = [];
         }
       }
     });
   }
+
+  void loadMore(){
+
+    if(_visibleCount < _allFixtures.length){
+
+      _visibleCount = (_visibleCount + 10).clamp(0, _allFixtures.length);
+      state = _allFixtures.take(_visibleCount).toList();
+    }
+  }
+
+  bool get canLoadMore => _visibleCount < _allFixtures.length;
 }
 
 final homeSearchResultsProvider =

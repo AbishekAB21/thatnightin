@@ -22,6 +22,7 @@ class InputSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final color = ref.watch(themeProvider);
     final results = ref.watch(homeSearchResultsProvider);
+    final notifier = ref.read(homeSearchResultsProvider.notifier);
 
     return Expanded(
       child: SingleChildScrollView(
@@ -39,7 +40,7 @@ class InputSection extends ConsumerWidget {
               hintText: 'Pick the match',
               controller: searchController,
               onChanged: (value) {
-                ref
+                 ref
                     .read(homeSearchResultsProvider.notifier)
                     .searchMatches(value);
               },
@@ -62,7 +63,25 @@ class InputSection extends ConsumerWidget {
               separatorBuilder: (context, index) => SizedBox(height: 10.0),
               itemCount: results.length,
             ),
+            SizedBox(height: 10.0),
+
+            // View more
+            if(notifier.canLoadMore)
+            Align(
+              alignment: AlignmentDirectional.bottomEnd,
+              child: TextButton(
+                onPressed: () {
+                  notifier.loadMore();
+                },
+                child: Text(
+                  "View more",
+                  style: Fontstyles.roboto16pxSemiBoldBlue(context, ref),
+                ),
+              ),
+            ),
             SizedBox(height: 20.0),
+
+            // Post inputs
             Align(
               alignment: Alignment.topLeft,
               child: Text(
