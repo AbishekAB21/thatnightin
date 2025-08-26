@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:thatnightin/features/home/core/providers/home_search_state_provider.dart';
 
 import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
 import 'package:thatnightin/common/widgets/reusable_textfield.dart';
-import 'package:thatnightin/features/bottom%20nav%20bar/widgets/search_result_widget.dart';
+import 'package:thatnightin/features/home/core/providers/home_provider.dart';
+import 'package:thatnightin/features/home/core/providers/home_search_state_provider.dart';
 import 'package:thatnightin/common/widgets/reusable_textfield_without_prefix_suffix.dart';
+import 'package:thatnightin/features/bottom%20nav%20bar/widgets/search_result_widget.dart';
+import 'package:thatnightin/features/bottom%20nav%20bar/widgets/selected_match_widget.dart';
 
 class InputSection extends ConsumerWidget {
   final TextEditingController searchController;
@@ -23,6 +25,7 @@ class InputSection extends ConsumerWidget {
     final color = ref.watch(themeProvider);
     final results = ref.watch(homeSearchResultsProvider);
     final notifier = ref.read(homeSearchResultsProvider.notifier);
+    final selectedMatch = ref.watch(selectedMatchProvider);
 
     return Expanded(
       child: SingleChildScrollView(
@@ -40,13 +43,13 @@ class InputSection extends ConsumerWidget {
               hintText: 'Pick the match',
               controller: searchController,
               onChanged: (value) {
-                 ref
+                ref
                     .read(homeSearchResultsProvider.notifier)
                     .searchMatches(value);
               },
             ),
             SizedBox(height: 10.0),
-            ListView.separated(
+            ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
@@ -54,31 +57,62 @@ class InputSection extends ConsumerWidget {
                 final homeTeam = match["teams"]["home"]["name"];
                 final awayTeam = match["teams"]["away"]["name"];
                 final date = match["fixture"]["date"];
-                return SearchResultWidget(
-                  awayTeam: awayTeam,
-                  homeTeam: homeTeam,
-                  date: date,
+                final fixtureId = match["fixture"]["id"];
+
+                return InkWell(
+                  onTap: () async {
+                    final stats = await ref
+                        .read(homeServiceProvider)
+                        .getMatchStats(fixtureId);
+
+                    // ref.read(selectedMatchProvider.notifier).state =
+                    //     selectedMatch;
+                    
+                    ref.read(selectedMatchProvider.notifier).state = {
+                      "fixture" : match["fixture"],
+                      "fixtureId" : fixtureId,
+                      "homeTeam" : homeTeam,
+                      "awayTeam" : awayTeam,
+                      "date" : date,
+                      "league" : match["league"],
+                      "stats" : stats,
+                    };
+
+                    // Clear Search
+                    searchController.clear();
+
+                    // Close list - clears provider
+                    ref.invalidate(homeSearchResultsProvider);
+                  },
+                  child: SearchResultWidget(
+                    awayTeam: awayTeam,
+                    homeTeam: homeTeam,
+                    date: date,
+                  ),
                 );
               },
-              separatorBuilder: (context, index) => SizedBox(height: 10.0),
               itemCount: results.length,
             ),
-            SizedBox(height: 10.0),
 
             // View more
-            if(notifier.canLoadMore)
-            Align(
-              alignment: AlignmentDirectional.bottomEnd,
-              child: TextButton(
-                onPressed: () {
-                  notifier.loadMore();
-                },
-                child: Text(
-                  "View more",
-                  style: Fontstyles.roboto16pxSemiBoldBlue(context, ref),
+            if (notifier.canLoadMore)
+              Align(
+                alignment: AlignmentDirectional.bottomEnd,
+                child: TextButton(
+                  onPressed: () {
+                    notifier.loadMore();
+                  },
+                  child: Text(
+                    "View more",
+                    style: Fontstyles.roboto16pxSemiBoldBlue(context, ref),
+                  ),
                 ),
               ),
-            ),
+
+            // Selected match
+            if (selectedMatch != null)
+              SelectedMatchWidget(match: selectedMatch),
+
             SizedBox(height: 20.0),
 
             // Post inputs

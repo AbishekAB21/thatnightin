@@ -33,7 +33,6 @@ class HomeService {
       _cache[query] = data;
       return data;
     } catch (e) {
-
       print('Something went wrong');
       return [];
     }
@@ -71,5 +70,41 @@ class HomeService {
       print("Something went wrong : $e");
       return [];
     }
+  }
+
+  // Get stats from fixtures
+  Future<Map<String, dynamic>?> getMatchStats(int fixtureId) async {
+    try {
+      final response = await _dio.get(
+        '/fixtures/statistics',
+        queryParameters: {'fixture': fixtureId},
+      );
+
+      if (response.statusCode == 200) {
+        final data = response.data["response"] as List;
+
+        if (data.length < 2) return null;
+
+        final home = {
+          "id": data[0]["team"]["id"],
+          "name": data[0]["team"]["name"],
+          "logo": data[0]["team"]["logo"],
+          "stats": {for (var s in data[0]["statistics"]) s["type"]: s["value"]},
+        };
+
+        final away = {
+          "id": data[1]["team"]["id"],
+          "name": data[1]["team"]["name"],
+          "logo": data[1]["team"]["logo"],
+          "stats": {for (var s in data[1]["statistics"]) s["type"]: s["value"]},
+        };
+
+        return {"home": home, "away": away};
+      }
+    } catch (e) {
+      throw Exception('Error fetching stats : $e');
+    }
+
+    return null;
   }
 }

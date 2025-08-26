@@ -96,3 +96,6 @@ final homeSearchResultsProvider =
       final service = ref.read(homeServiceProvider);
       return HomeSearchNotifier(service);
     });
+
+final selectedMatchProvider =
+    StateProvider<Map<String, dynamic>?>((ref) => null);
