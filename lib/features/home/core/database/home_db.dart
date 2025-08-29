@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:thatnightin/features/home/component/home_screen_component.dart';
 
@@ -47,5 +51,22 @@ class HomeDb {
         .collection('myposts')
         .doc(postId)
         .set(postData);
+  }
+
+  // Upload Image to Firebase Storage
+  Future<String?> uploadImageToStorage(XFile img) async {
+    try {
+      final storageRef = FirebaseStorage.instance.ref().child(
+        'posts/${DateTime.now().millisecondsSinceEpoch}.jpg',
+      );
+
+      await storageRef.putFile(File(img.path));
+
+      final url = await storageRef.getDownloadURL();
+
+      return url;
+    } catch (e) {
+      return null;
+    }
   }
 }

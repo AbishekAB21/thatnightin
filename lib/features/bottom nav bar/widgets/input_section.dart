@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
-import 'package:thatnightin/common/providers/theme_provider.dart';
 import 'package:thatnightin/common/widgets/reusable_textfield.dart';
 import 'package:thatnightin/features/home/core/providers/home_provider.dart';
-import 'package:thatnightin/features/home/core/providers/home_search_state_provider.dart';
+import 'package:thatnightin/features/bottom%20nav%20bar/widgets/pick_image_widget.dart';
 import 'package:thatnightin/common/widgets/reusable_textfield_without_prefix_suffix.dart';
+import 'package:thatnightin/features/home/core/providers/home_search_state_provider.dart';
 import 'package:thatnightin/features/bottom%20nav%20bar/widgets/search_result_widget.dart';
 import 'package:thatnightin/features/bottom%20nav%20bar/widgets/selected_match_widget.dart';
+import 'package:thatnightin/features/bottom%20nav%20bar/widgets/selected_image_viewer_widget.dart';
 
 class InputSection extends ConsumerWidget {
   final TextEditingController searchController;
@@ -22,10 +23,10 @@ class InputSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final color = ref.watch(themeProvider);
     final results = ref.watch(homeSearchResultsProvider);
     final notifier = ref.read(homeSearchResultsProvider.notifier);
     final selectedMatch = ref.watch(selectedMatchProvider);
+    final pickedImage = ref.watch(pickedImageProvider);
 
     return Expanded(
       child: SingleChildScrollView(
@@ -67,15 +68,15 @@ class InputSection extends ConsumerWidget {
 
                     // ref.read(selectedMatchProvider.notifier).state =
                     //     selectedMatch;
-                    
+
                     ref.read(selectedMatchProvider.notifier).state = {
-                      "fixture" : match["fixture"],
-                      "fixtureId" : fixtureId,
-                      "homeTeam" : homeTeam,
-                      "awayTeam" : awayTeam,
-                      "date" : date,
-                      "league" : match["league"],
-                      "stats" : stats,
+                      "fixture": match["fixture"],
+                      "fixtureId": fixtureId,
+                      "homeTeam": homeTeam,
+                      "awayTeam": awayTeam,
+                      "date": date,
+                      "league": match["league"],
+                      "stats": stats,
                     };
 
                     // Clear Search
@@ -140,33 +141,9 @@ class InputSection extends ConsumerWidget {
             SizedBox(height: 10.0),
 
             // Adjust the bottom container to display the selected image once selected
-            Container(
-              height: 150,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                border: Border.all(color: color.textfieldBackground2),
-              ),
-              child: Center(
-                child: IconButton.outlined(
-                  style: ButtonStyle(
-                    shape: WidgetStatePropertyAll(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        side: BorderSide(color: color.textfieldBackground),
-                      ),
-                    ),
-                  ),
-
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.image_rounded,
-                    color: color.secondaryGradient2,
-                    size: 30,
-                  ),
-                ),
-              ),
-            ),
+            pickedImage != null
+                ? SelectedImageViewerWidget(pickedImage: pickedImage)
+                : PickImageWidget(),
           ],
         ),
       ),
