@@ -69,4 +69,16 @@ class HomeDb {
       return null;
     }
   }
+
+  // --------- Read methods ---------
+
+  // Get all posts
+  Stream<QuerySnapshot<Map<String, dynamic>>> getPostsStream() {
+    return _firebase
+        .collection('posts')
+        .orderBy('cereatedAt', descending: true)
+        .snapshots();
+  }
+
+  // Get user specific posts
 }

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:thatnightin/utils/fontstyles/fontstyles.dart';
 import 'package:thatnightin/common/providers/theme_provider.dart';
 
 class PostWidget extends ConsumerWidget {
-  const PostWidget({super.key});
+  final Map<String, dynamic> post;
+  const PostWidget({super.key, required this.post});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -88,7 +89,7 @@ class PostWidget extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'That night in Istanbul ',
+              '${post['caption']} ',
               style: Fontstyles.roboto13px(context, ref),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
