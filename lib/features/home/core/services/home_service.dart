@@ -73,38 +73,57 @@ class HomeService {
   }
 
   // Get stats from fixtures
+  // Get stats + score line for a fixture
   Future<Map<String, dynamic>?> getMatchStats(int fixtureId) async {
     try {
-      final response = await _dio.get(
+      // 1. Fetch statistics
+      final statsResponse = await _dio.get(
         '/fixtures/statistics',
         queryParameters: {'fixture': fixtureId},
       );
 
-      if (response.statusCode == 200) {
-        final data = response.data["response"] as List;
+      if (statsResponse.statusCode != 200) return null;
 
-        if (data.length < 2) return null;
+      final statsData = statsResponse.data["response"] as List;
+      if (statsData.length < 2) return null;
 
-        final home = {
-          "id": data[0]["team"]["id"],
-          "name": data[0]["team"]["name"],
-          "logo": data[0]["team"]["logo"],
-          "stats": {for (var s in data[0]["statistics"]) s["type"]: s["value"]},
-        };
+      // 2. Fetch score line
+      final fixtureResponse = await _dio.get(
+        '/fixtures',
+        queryParameters: {'id': fixtureId},
+      );
 
-        final away = {
-          "id": data[1]["team"]["id"],
-          "name": data[1]["team"]["name"],
-          "logo": data[1]["team"]["logo"],
-          "stats": {for (var s in data[1]["statistics"]) s["type"]: s["value"]},
-        };
+      if (fixtureResponse.statusCode != 200) return null;
 
-        return {"home": home, "away": away};
-      }
+      final fixtureData = fixtureResponse.data["response"][0];
+      final homeGoals = fixtureData["goals"]["home"];
+      final awayGoals = fixtureData["goals"]["away"];
+      final status = fixtureData["fixture"]["status"]["short"];
+
+      // 3. Build home & away objects like before
+      final home = {
+        "id": statsData[0]["team"]["id"],
+        "name": statsData[0]["team"]["name"],
+        "logo": statsData[0]["team"]["logo"],
+        "goals": homeGoals,
+        "stats": {
+          for (var s in statsData[0]["statistics"]) s["type"]: s["value"],
+        },
+      };
+
+      final away = {
+        "id": statsData[1]["team"]["id"],
+        "name": statsData[1]["team"]["name"],
+        "logo": statsData[1]["team"]["logo"],
+        "goals": awayGoals,
+        "stats": {
+          for (var s in statsData[1]["statistics"]) s["type"]: s["value"],
+        },
+      };
+
+      return {"status": status, "home": home, "away": away};
     } catch (e) {
-      throw Exception('Error fetching stats : $e');
+      throw Exception('Error fetching match details : $e');
     }
-
-    return null;
   }
 }

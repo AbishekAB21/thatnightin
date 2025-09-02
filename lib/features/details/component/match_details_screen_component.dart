@@ -65,7 +65,7 @@ class MatchDetailsScreenComponent extends ConsumerWidget {
                   ),
                 ),
 
-                ScoreBoardSection(),
+                ScoreBoardSection(matchId: matchId,),
               ],
             ),
           ),
