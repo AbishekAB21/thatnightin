@@ -11,7 +11,8 @@ import 'package:thatnightin/features/details/container/squads_tab_container.dart
 import 'package:thatnightin/features/details/container/highlights_tab_container.dart';
 
 class MatchDetailsScreenComponent extends ConsumerWidget {
-  const MatchDetailsScreenComponent({super.key});
+  final String matchId;
+  const MatchDetailsScreenComponent({super.key, required this.matchId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,7 +32,7 @@ class MatchDetailsScreenComponent extends ConsumerWidget {
               ),
             ),
             automaticallyImplyLeading: false,
-      
+
             flexibleSpace: Stack(
               children: [
                 Container(
@@ -63,7 +64,7 @@ class MatchDetailsScreenComponent extends ConsumerWidget {
                     ),
                   ),
                 ),
-      
+
                 ScoreBoardSection(),
               ],
             ),
@@ -81,27 +82,29 @@ class MatchDetailsScreenComponent extends ConsumerWidget {
                 indicatorSize: TabBarIndicatorSize.tab,
                 indicatorWeight: 2.0,
                 tabAlignment: TabAlignment.fill,
-                overlayColor: WidgetStatePropertyAll(color.textfieldBackground2),
+                overlayColor: WidgetStatePropertyAll(
+                  color.textfieldBackground2,
+                ),
                 unselectedLabelColor: color.iconColor,
-                
+
                 tabs: [
                   Tab(text: 'Stats'),
                   Tab(text: 'Squads'),
                   Tab(text: 'Discussion'),
                 ],
               ),
-                
+
               Expanded(
                 child: TabBarView(
                   children: [
                     // Stats
-                    StatsTabContainer(),
-                
+                    StatsTabContainer(matchId: matchId),
+
                     // Squads
-                    SquadsTabContainer(),
-                
+                    SquadsTabContainer(matchId: matchId),
+
                     // Highlights
-                    DiscussionContainer(),
+                    DiscussionContainer(matchId: matchId),
                   ],
                 ),
               ),

@@ -53,9 +53,12 @@ final GoRouter appRouter = GoRouter(
     // Match detail screen
     GoRoute(
       path: '/match-detail-screen',
-      pageBuilder:
-          (context, state) =>
-              fadeTransitionPage(child: const MatchDetailsScreenContainer()),
+      pageBuilder: (context, state) {
+        final matchId = state.extra as String;
+        return fadeTransitionPage(
+          child: MatchDetailsScreenContainer(matchId: matchId),
+        );
+      },
     ),
 
     // Settings screen

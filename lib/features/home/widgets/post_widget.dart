@@ -58,7 +58,10 @@ class PostWidget extends ConsumerWidget {
                 IconButton(
                   onPressed: () {
                     // Navigate to detail screen
-                    context.push('/match-detail-screen');
+                    context.push(
+                      '/match-detail-screen',
+                      extra: post['matchId'],
+                    );
                   },
                   icon: Icon(
                     Icons.arrow_forward_ios_rounded,

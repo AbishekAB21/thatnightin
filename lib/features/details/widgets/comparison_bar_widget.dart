@@ -52,7 +52,7 @@ class ComparisonBarWidget extends ConsumerWidget {
             children: [
               ispercent
                   ? Text(
-                    "$leftProgress%",
+                    leftProgress,
                     style: Fontstyles.roboto18px(context, ref),
                   )
                   : Text(
@@ -61,7 +61,7 @@ class ComparisonBarWidget extends ConsumerWidget {
                   ),
               ispercent
                   ? Text(
-                    "$rightProgress%",
+                    rightProgress,
                     style: Fontstyles.roboto18px(context, ref),
                   )
                   : Text(
@@ -89,15 +89,17 @@ class ComparisonBarWidget extends ConsumerWidget {
   }
 
   double _getPercentFromString(String value) {
-    final percent = double.tryParse(value) ?? 0.0;
-    return percent;
-  }
+  final cleaned = value.replaceAll('%', '').trim();
+  return double.tryParse(cleaned) ?? 0.0;
+}
 
-  double _calculateRelativePercent(String left, String right, bool isLeft) {
-    final leftValue = double.tryParse(left) ?? 0.0;
-    final rightValue = double.tryParse(right) ?? 0.0;
-    final total = leftValue + rightValue;
-    if (total == 0) return 0.0;
-    return isLeft ? (leftValue / total) : (rightValue / total);
-  }
+
+double _calculateRelativePercent(String left, String right, bool isLeft) {
+  final leftValue = _getPercentFromString(left);
+  final rightValue = _getPercentFromString(right);
+  final total = leftValue + rightValue;
+  if (total == 0) return 0.0;
+  return isLeft ? (leftValue / total) : (rightValue / total);
+}
+
 }

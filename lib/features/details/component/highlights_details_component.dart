@@ -9,7 +9,8 @@ import 'package:thatnightin/features/details/widgets/comments_builder_widget.dar
 import 'package:thatnightin/common/widgets/reusable_textfield_without_prefix_suffix.dart';
 
 class DiscussionComponent extends ConsumerWidget {
-  const DiscussionComponent({super.key});
+  final String matchId;
+  const DiscussionComponent({super.key, required this.matchId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

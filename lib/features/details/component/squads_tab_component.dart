@@ -7,7 +7,8 @@ import 'package:thatnightin/common/providers/theme_provider.dart';
 import 'package:thatnightin/features/details/widgets/squad_builder_widget.dart';
 
 class SquadsTabComponent extends ConsumerWidget {
-  const SquadsTabComponent({super.key});
+  final String matchId;
+  const SquadsTabComponent({super.key, required this.matchId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
